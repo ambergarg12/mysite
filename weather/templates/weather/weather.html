@@ -1,0 +1,53 @@
+{% extends 'weather/Myfirstwebsite.html'%}
+{% block content %}
+
+<div class="introduction">
+    <div class="intro-text">
+    <h1>Check Weather of Your City</h1>
+    </div>
+</div>
+
+<br>
+
+    <form method='post' class="col-md-6 col-md-offset-3">
+        {% csrf_token %}
+        <div style="width: 100%;
+        position: relative;
+        display: flex;">
+            <input style="
+        border: 3px solid #0044cc;
+        font-size: 16px;
+        margin: 30px 0px 0px 30px;
+        padding: 5px;
+        width: 150px;
+        height: 50px;
+        border-radius: 5px 0 0 5px;
+        outline: none;
+        color: #0400ff;" type="text" name='city' placeholder="search..."x style="width:50%">
+        </div>
+        <div class="input-group-btn">
+          <button class="select2" type="submit">
+            <i class="glyphicon glyphicon-search">Search</i>
+          </button>
+        </div>
+    </form>
+
+<div class="rightdiv" style="width:100%; text-align:center;">
+{% if country_code and name and temp and pressure and humidity %}
+    <div class="col-md-6 col-md-offset-3" style="margin-left:50px; display:flex;">
+      <div style="border:1px solid blue;" >
+        <img src="http://openweathermap.org/img/w/{{icon}}.png" width="80"></img>
+        <h1>{{description}}</h1>
+      </div>
+      <div>
+        <h6>country code : {{country_code}}</h6>
+        <h6>name : {{name}}</h6>
+        <h6>temp : {{temp}}</h6>
+        <h6>pressure : {{pressure}} </h6>
+        <h6>humidity : {{humidity}}</h6>
+      </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
